@@ -1,8 +1,12 @@
-import React from 'react'
+import Sidebar from './components/Sidebar/Sidebar'
+
+import './styles/global.scss'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div className="wrapper">
+      <Sidebar/>
+    </div>
   )
 }
 

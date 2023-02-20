@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(247.32deg, rgba(46, 176, 242, 0.32) 0%, rgba(46, 176, 242, 0.32) 15.7%, rgba(46, 176, 242, 0.32) 28.78%, rgba(46, 176, 242, 0.32) 43.93%, rgba(46, 176, 242, 0.32) 60.2%, rgba(46, 176, 242, 0.32) 80.8%, rgba(5, 178, 248, 0.32) 100%);
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+}

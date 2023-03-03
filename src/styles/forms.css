@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+body {
+    margin: 0;
+    /* padding: 20px; */
+    background: linear-gradient(247.32deg, rgba(46, 176, 242, 0.32) 0%, rgba(46, 176, 242, 0.32) 15.7%, rgba(46, 176, 242, 0.32) 28.78%, rgba(46, 176, 242, 0.32) 43.93%, rgba(46, 176, 242, 0.32) 60.2%, rgba(46, 176, 242, 0.32) 80.8%, rgba(5, 178, 248, 0.32) 100%);
+}
+
+.form-container {
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .form {
+    background: linear-gradient(247.32deg, rgba(46, 176, 242, 0.32) 0%, rgba(46, 176, 242, 0.32) 15.7%, rgba(46, 176, 242, 0.32) 28.78%, rgba(46, 176, 242, 0.32) 43.93%, rgba(46, 176, 242, 0.32) 60.2%, rgba(46, 176, 242, 0.32) 80.8%, rgba(5, 178, 248, 0.32) 100%);
+    padding: 50px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.75);
+} */
+
+.regTitle{
+    font-weight: 500;
+    color: rgba(17, 23, 75, 0.9);
+}
+
+.form--input {
+    color: #11174B;
+    background: rgba(255, 255, 255, 0.56);
+    width: 33%;
+    height: 56px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0 25px;
+    font-family: 'Inter', sans-serif;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #11174B80;
+    opacity: 1; /* Firefox */
+  }
+
+.form--submit {
+    width: 23%;
+    height: 56px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 30px;
+    color: #11174B;
+    background-color: rgba(255, 255, 255, 0.76);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    border: none;   
+    cursor: pointer; 
+}
+
+.form--marketing {
+    margin: 0 auto;
+}
+
+.form--marketing > input {
+    margin-right: 10px;
+}
+
+

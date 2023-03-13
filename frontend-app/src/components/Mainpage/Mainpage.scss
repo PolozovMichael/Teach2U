@@ -1,0 +1,48 @@
+.main-wrapper {
+  padding: 40px 0 0 50px;
+  .upper-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .main-title {
+    font-weight: 500;
+    font-size: 46px;
+    letter-spacing: 0.035em;
+    color: rgba(17, 23, 75, 0.9);
+    margin-top: 50px;
+  }
+
+  .cards-block {
+    height: 100%;
+    .card-row {
+      overflow-y: scroll;
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+      height: 60.5vh;
+      padding: 20px 0;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.802);
+  border-radius: 50px;
+}

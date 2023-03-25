@@ -1,0 +1,140 @@
+
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+.shape:first-child{
+    background: linear-gradient(
+        #97fe8d,
+        #19cc28
+    );
+    left: -150px;
+    top: -105px;
+}
+.shape:last-child{
+    background: linear-gradient(
+        to right,
+        #f09819,
+        #f3eb45
+    );
+    right: -150px;
+    bottom: -105px;
+}
+.SignInFrom{
+    height: 57%;
+    width: 37%;
+    background-color: rgba(103, 170, 222, 0.805);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 1px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+.SignInFrom *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.SignInFrom h3{
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 42px;
+    text-align: center;
+}
+
+.signLabel{
+    display: block;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.form--inpt{
+    display: block;
+    height: 50px;
+    width: 100%;
+    color: #11174b;
+    background: rgba(255, 255, 255, 0.56);
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #6b61619d;
+}
+.form--sbt{
+    margin-top: 50px;
+    width: 100%;
+    padding: 15px 0;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    font-size: 1.2rem;
+    height: 56px;
+    border-radius: 30px;
+    color: #11174b;
+    background-color: rgba(255, 255, 255, 0.76);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  line-height: 27px;
+  width: 180px;
+  border-radius: 30px;
+  height: 40px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255, 255, 255, 0.492);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #11174b;
+  text-align: center;
+  cursor: pointer;
+}
+.social div:hover{
+  background-color: rgba(255, 255, 255, 0.329);
+}
+.social .fb{
+  color: #11174b;
+  margin-left: 25px;
+}
+.social .go{
+  color: #11174b;
+  margin-left: 25px;
+}
+
+.navigation-item{
+  cursor: pointer;
+  font-size: 20px;
+} 
+
+#signUp{
+  margin-top: 20px;
+}

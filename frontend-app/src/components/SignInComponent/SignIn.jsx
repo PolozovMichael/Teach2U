@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import axiosInstance from "../../axios";
+import Sidebar from "../Sidebar/Sidebar";
 const SignIn = () => {
   const [formData, setFormData] = React.useState({
     email: "",
@@ -37,7 +38,8 @@ const SignIn = () => {
 			});
 	};
   return (
-    <div>
+    <div className="main">
+      <Sidebar/>
     <div className="background">
     <div className="shape"></div>
     <div className="shape"></div>

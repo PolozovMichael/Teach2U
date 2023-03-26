@@ -1,8 +1,6 @@
 import './styles/global.scss'
-import Sidebar from './components/Sidebar/Sidebar'
 import { Route, Routes } from 'react-router-dom'
 import Mainpage from './components/Mainpage/Mainpage'
-import Dashboard from './components/Dashboard/Dashboard'
 import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignInComponent/SignIn'
 import Teachers1 from './components/Teachers/Teachers1'
@@ -10,7 +8,6 @@ import SignUpTeacher from './components/SignUp/SignAsTeacher'
 import ResetPass from './components/Reset Password/ResetPass'
 import ConfirmPass from './components/ConfirmPage/ConfirmPass'
 import EduRegister from './components/SignUp/EduRegister'
-import Profile from './components/Profile/Profile'
 import ConfirmEmail from './components/SignUp/ConfirmEmail'
 import StudentProfile from './components/StudentProfile/StudentProfile'
 import TeacherProfile from './components/TeacherProfile/TeacherProfile'
@@ -18,14 +15,12 @@ import TeacherProfile from './components/TeacherProfile/TeacherProfile'
 const App = () => {
   return (
       <div className="wrapper">
-        <Sidebar />
         <Routes>
           <Route
             path="/"
             element={
               <>
                 <Mainpage />
-                <Dashboard />
               </>
             }
           ></Route>
@@ -79,7 +74,6 @@ const App = () => {
           element={
             <>
               <StudentProfile />
-              <Dashboard />
             </>
           }
         ></Route>

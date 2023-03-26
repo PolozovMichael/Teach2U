@@ -1,27 +1,34 @@
-* {
+.main {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 2.8fr 1fr;
+  * {
     box-sizing: border-box;
-}
+  }
 
-body {
+  body {
     background-color: whitesmoke;
     margin: 0;
     font-family: "Inter", sans-serif;
-}
+  }
 
-main {
+  main {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
 
-.main-wrapper {
+  .main-wrapper {
     padding: 20px 0 0 50px;
+
     .upper-content {
       display: flex;
       justify-content: space-between;
       width: 100%;
     }
+
     .main-title {
       font-weight: 500;
       font-size: 46px;
@@ -29,9 +36,10 @@ main {
       color: rgba(17, 23, 75, 0.9);
       margin-top: 5px;
     }
-  
+
     .cards-block {
       height: 100%;
+
       .card-row {
         overflow-y: scroll;
         display: flex;
@@ -42,62 +50,63 @@ main {
       }
     }
   }
-  
+
   ::-webkit-scrollbar {
     width: 10px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f100;
   }
-  
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50px;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.802);
     border-radius: 50px;
   }
-  
-.card {
+
+  .card {
     display: inline-block;
     margin: 4px;
     width: 200px;
     border: 1px solid lightgray;
     border-radius: 10px;
     height: 350px;
-    box-shadow: 5px 5px 5px 1px rgba(120,120,120,0.44);
-    -webkit-box-shadow: 5px 5px 5px 1px rgba(120,120,120,0.44);
-    -moz-box-shadow: 5px 5px 5px 1px rgba(120,120,120,0.44);
-}
+    box-shadow: 5px 5px 5px 1px rgba(120, 120, 120, 0.44);
+    -webkit-box-shadow: 5px 5px 5px 1px rgba(120, 120, 120, 0.44);
+    -moz-box-shadow: 5px 5px 5px 1px rgba(120, 120, 120, 0.44);
+  }
 
-.card--image {
+  .card--image {
     width: 100%;
     padding: 10%;
     padding-bottom: 0;
-}
+  }
 
-.card--name {
+  .card--name {
     margin-block: 13px;
     color: #333333;
-}
+  }
 
-.card--info {
+  .card--info {
     padding: 10px;
-}
+  }
 
-.card--favorite {
+  .card--favorite {
     width: 25px;
     cursor: pointer;
-}
+  }
 
-.card--contact {
+  .card--contact {
     font-size: 0.75rem;
     color: gray;
     margin-block: 7px;
+  }
 }

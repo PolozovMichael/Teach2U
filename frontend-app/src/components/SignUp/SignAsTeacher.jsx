@@ -3,6 +3,7 @@ import { useState } from 'react';
 import EduCentCard from './EduCentCard';
 import school from '../../assets/svg-pictures/school.svg'
 import axiosInstance from "../../axios";
+import Sidebar from '../Sidebar/Sidebar';
 
 const SignUpTeacher = () => {
   const [formData, setFormData] = useState({
@@ -44,7 +45,9 @@ const SignUpTeacher = () => {
 
   return (
     
-    <form className="form" onSubmit={handleSubmit}>
+    <div className="main">
+      <Sidebar/>
+      <form className="form" onSubmit={handleSubmit}>
             <EduCentCard className='form--card'
             src={school}
             text="Зарегистрировать образовательный центр"
@@ -107,6 +110,7 @@ const SignUpTeacher = () => {
         Завершить регистрацию
       </button>
     </form>
+    </div>
   );
 };
 

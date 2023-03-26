@@ -4,6 +4,8 @@ import MainpageCard from '../MainpageCard/MainpageCard'
 import cardsData from './cardsData'
 import teacherCard from '../../assets/svg-pictures/teacher.svg'
 import axiosInstance from '../../axios'
+import Sidebar from '../Sidebar/Sidebar'
+import Dashboard from '../Dashboard/Dashboard'
 
 
 const Teachers1 = () => {
@@ -36,7 +38,9 @@ const Teachers1 = () => {
       buttonText={"Подробнее"} />
   ))
   return (
-    <div className="main-wrapper">
+    <div className="main">
+      <Sidebar/>
+      <div className="main-wrapper">
       <h1 className="main-title">
         Учителя
       </h1>
@@ -45,6 +49,8 @@ const Teachers1 = () => {
           {cardElements}
         </div>
       </div>
+      </div>
+      <Dashboard/>
     </div>
   )
 }

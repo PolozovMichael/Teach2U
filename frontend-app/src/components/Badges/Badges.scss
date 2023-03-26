@@ -1,0 +1,79 @@
+.badges-wrapper {
+  height: 137px;
+  background: linear-gradient(
+    118.44deg,
+    rgba(255, 255, 255, 0.51) 0%,
+    #ffffff 100%
+  );
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 13px 12px 13px 24px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+
+  .badges-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    border-color: rgba(174, 118, 118, 0.37);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+
+    .badges-title {
+      h3 {
+        font-weight: 400;
+        font-size: 18px;
+        letter-spacing: 0.035em;
+        color: rgba(17, 23, 75, 0.85);
+      }
+    }
+
+    .badges-options {
+      cursor: pointer;
+
+      svg {
+        width: 22px;
+        height: 22px;
+        fill: rgba(17, 23, 75, 0.85);
+      }
+    }
+  }
+
+  .badges-body {
+    display: flex;
+    gap: 13px;
+    align-items: center;
+
+    .badge {
+      img:hover {
+        transform: scale(1.1);
+      }
+
+      svg:last-child:hover {
+        transform: scale(1);
+      }
+
+      svg:hover {
+        transform: scale(1.1);
+      }
+
+      img {
+        transition: all 0.3s ease-in-out !important;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .badge:last-child {
+      cursor: pointer;
+
+      svg {
+        transition: all 0.3s ease-in-out !important;
+        width: 30px;
+        height: 30px;
+        fill: #454545;
+      }
+    }
+  }
+}

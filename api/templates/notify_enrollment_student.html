@@ -1,0 +1,9 @@
+{% autoescape off %}
+Hi {{ student.first_name }} {{ student.last_name }},
+
+You have been enrolled in {{ lesson.start_time }}, {{ course.name }} course.
+
+Please click the link below to start Zoom meeting:
+{{ lesson.join_url }}
+
+{% endautoescape %}

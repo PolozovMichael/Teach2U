@@ -1,0 +1,59 @@
+.quotes-wrapper {
+  height: 226px;
+  background: linear-gradient(
+    118.44deg,
+    rgba(255, 255, 255, 0.51) 0%,
+    #ffffff 100%
+  );
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 13px 12px 13px 24px;
+  margin-top: 25px;
+
+  .quotes-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    border-color: rgba(174, 118, 118, 0.37);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+
+    .quotes-title {
+      h3 {
+        font-weight: 400;
+        font-size: 18px;
+        letter-spacing: 0.035em;
+        color: rgba(17, 23, 75, 0.85);
+      }
+    }
+
+    .quotes-menu {
+      cursor: pointer;
+
+      svg {
+        width: 22px;
+        height: 22px;
+        fill: rgba(17, 23, 75, 0.85);
+      }
+    }
+  }
+
+  .quotes-body {
+    width: 100%;
+    overflow-y: scroll;
+    height: 150px;
+
+    .quote {
+      width: 100%;
+      margin-bottom: 20px;
+
+      p {
+        font-weight: 400;
+        font-size: 18px;
+        letter-spacing: 0.035em;
+        color: rgba(17, 23, 75, 0.73);
+      }
+    }
+  }
+}

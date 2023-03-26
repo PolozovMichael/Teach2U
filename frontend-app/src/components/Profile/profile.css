@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto';
+  }
+  
+  body {
+    margin: 0;
+  
+  }
+
+.imgContainer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.imgProfile{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #11174b;;
+}
+
+.img-inpt{
+    margin: 100px 30px;
+    /* display: none; */
+}
+
+.imgText{
+    font-size: 20px;
+    font-weight: 500;
+    color: #11174b;
+}
+
+.avatar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.firstContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.SecondContainer{
+    display: flex;
+    justify-content: space-around;
+}

@@ -42,7 +42,6 @@ const SignUp = () => {
   };
 
   return (
-    
     <form className="form" onSubmit={handleSubmit}>
             <TeachCard className='form--card'
             src={teacherCard}

@@ -1,4 +1,5 @@
 import React from 'react'
+import Calendar from './Calendar/CalendarTeach'
 import ContactInfoTeach from './ContactInfo/ContactInfoTeach'
 import CoursesTeach from './Courses/CoursesTeach'
 import PersonalInfoTeach from './PersonalInfo Teacher/PersonalInfoTeach'
@@ -12,6 +13,7 @@ const TeacherProfile = () => {
         <ContactInfoTeach/>
         <h1 className="profile-title_t">Актуальные курсы</h1>
         <CoursesTeach />
+        <Calendar />
     </div>
   )
 }

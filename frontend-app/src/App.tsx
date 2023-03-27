@@ -12,6 +12,7 @@ import ConfirmPass from './components/ConfirmPage/ConfirmPass'
 import EduRegister from './components/SignUp/EduRegister'
 import Profile from './components/Profile/Profile'
 import ConfirmEmail from './components/SignUp/ConfirmEmail'
+import StudentProfile from './components/StudentProfile/StudentProfile'
 
 const App = () => {
   return (

@@ -48,12 +48,6 @@ const SignUpTeacher = () => {
     <div className="main">
       <Sidebar/>
       <form className="form" onSubmit={handleSubmit}>
-            <EduCentCard className='form--card'
-            src={school}
-            text="Зарегистрировать образовательный центр"
-            buttonText="Регистрация"
-            url='/regEduCent'
-          />
       <h1 className='regTitle'>Регистрация репетитора</h1>    
       <p>Введите ваши данные</p>
       <input

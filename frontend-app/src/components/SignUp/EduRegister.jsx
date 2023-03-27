@@ -3,6 +3,7 @@ import { useState } from 'react';
 import EduCentCard from './EduCentCard';
 import parent from '../../assets/svg-pictures/parents.svg'
 import axiosInstance from "../../axios";
+import Sidebar from '../Sidebar/Sidebar';
 
 const EduRegister = () => {
   const [formData, setFormData] = useState({
@@ -44,13 +45,9 @@ const EduRegister = () => {
 
   return (
     
-    <form className="form" onSubmit={handleSubmit}>
-            <EduCentCard className='form--card'
-            src={parent}
-            text="Вернуться на регистрацию пользователя"
-            buttonText="Назад"
-            url='/register'
-          />
+    <div className="main">
+      <Sidebar/>
+      <form className="form" onSubmit={handleSubmit}>
       <h1 className='regTitle'>Регистрация образовательного центра</h1>    
       <p>Введите данные центра</p>
       <input
@@ -115,6 +112,7 @@ const EduRegister = () => {
         Завершить регистрацию
       </button>
     </form>
+    </div>
   );
 };
 

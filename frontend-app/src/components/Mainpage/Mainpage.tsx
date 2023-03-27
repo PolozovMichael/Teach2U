@@ -19,7 +19,7 @@ const Mainpage = () => {
           Добро пожаловать в онлайн образовательную платформу Teach2U
         </h1>
         <div className="cards-block">
-          <div className="card-row">
+          <div className="card-row all-cards">
             <MainpageCard
               src={studentPicture}
               text="Проходи обучение как ученик и получай качественное образование от лучших преподователей"

@@ -296,6 +296,7 @@ class EnrollCourseView(generics.CreateAPIView):
                     teacher = User.objects.get(pk=teacher.user_id)
                     notify_teacher(teacher=teacher,course=course,lesson=lesson,student = request.user)
                     notify_student(course=course,lesson=lesson,student = request.user)
+                    new_enrollment_for_us(teacher=teacher,course=course,lesson=lesson,student = request.user)
                     return Response({'msg': 'Enrollment successful'}, status=status.HTTP_200_OK)
                 else:
                     return Response({'msg': 'Lesson is not avaliable'}, status=status.HTTP_202_ACCEPTED)
@@ -407,3 +408,19 @@ class UpdateLessonView(generics.RetrieveUpdateAPIView):
                 return Response({'msg': 'Lesson not updated. Conflicting times'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'msg': 'You are not allowed to update this lesson'}, status=status.HTTP_403_FORBIDDEN)
+        
+
+class CurrentUserView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = CurrentUserSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return User.objects.filter(pk=self.request.user.id)
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+ 

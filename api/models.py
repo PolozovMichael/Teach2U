@@ -36,6 +36,8 @@ class CustomManager(UserManager):
 
 class User(AbstractUser):
     username = None
+    surname = models.CharField(max_length=255, null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True, default=None)
     email = models.EmailField(_("email address"), max_length=150,
         unique=True,
         error_messages={

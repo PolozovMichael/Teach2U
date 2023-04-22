@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import TeachCard from './TeachCard';
 import './sign-up.css'
 import axiosInstance from "../../axios";
+import axios from 'axios';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
     email: '',
+    birth_date: null,
+    surname: '',
     phone: '',
     password: '',
     password2: ''
@@ -33,6 +36,9 @@ const SignUp = () => {
       }
     }
     let formattedData = JSON.stringify(formData)
+    const user = localStorage.getItem('access_token')
+
+    console.log('formData', user)
     axiosInstance
       .post('signup/student/', formData)
       .then(() =>
@@ -65,6 +71,22 @@ const SignUp = () => {
         name="last_name"
         className="form--input"
         value={formData.last_name}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        placeholder="Отчество"
+        name="surname"
+        className="form--input"
+        value={formData.surname}
+        onChange={handleChange}
+      />
+      <input
+        type="date"
+        placeholder="Дата рождения"
+        name="birth_date"
+        className="form--input"
+        value={formData.birth_date}
         onChange={handleChange}
       />
       <p>Контакты</p>

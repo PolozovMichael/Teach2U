@@ -11,9 +11,10 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 # Models Entities
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email', 'birth_date', 'surname']
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
@@ -63,14 +64,16 @@ class TeacherSignupSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone']
+        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'birth_date', 'surname']
         extra_kwargs = {'password': {'write_only': True}}
 
     def save(self, **kwargs):
         user = User(
             first_name = self.validated_data['first_name'],
             last_name = self.validated_data['last_name'],
-            email = self.validated_data['email']
+            email = self.validated_data['email'],
+            birth_date = self.validated_data['birth_date'],
+            surname = self.validated_data['surname']
         )
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
@@ -91,14 +94,16 @@ class StudentSignupSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone']
+        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'birth_date', 'surname']
         extra_kwargs = {'password': {'write_only': True}}
 
     def save(self, **kwargs):
         user = User(
             first_name = self.validated_data['first_name'],
             last_name = self.validated_data['last_name'],
-            email = self.validated_data['email']
+            email = self.validated_data['email'],
+            birth_date = self.validated_data['birth_date'],
+            surname = self.validated_data['surname']
         )
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
@@ -366,3 +371,24 @@ class UpdateLessonsSerializer(serializers.ModelSerializer):
         else:
             return False
 
+class CurrentUserSerializer(serializers.ModelSerializer):
+    teacher = TeacherSerializer(many=False)
+    student = StudentSerializer(many=False)
+    edu_center = EduCenterSerializer(many=False)
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email', 'birth_date', 'surname', 'is_student', 'is_teacher', 'is_edu_center', 'teacher', 'student', 'edu_center']
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        if instance.is_student:
+            ret.pop('teacher')
+            ret.pop('edu_center')
+        elif instance.is_teacher:
+            ret.pop('student')
+            ret.pop('edu_center')
+        elif instance.is_edu_center:
+            ret.pop('student')
+            ret.pop('teacher')
+        return ret

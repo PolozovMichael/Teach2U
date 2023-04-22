@@ -34,7 +34,9 @@ const SignIn = () => {
 				axiosInstance.defaults.headers['Authorization'] =
 					'Bearer ' + localStorage.getItem('access_token');
         navigate('/');
-			});
+      }).catch((error) => {
+        console.log(error);
+      });
 	};
   return (
     <div>

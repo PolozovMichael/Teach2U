@@ -93,3 +93,15 @@ def notify_update_lesson(lesson,student,course,*args, **kwargs):
     })
     email = EmailMessage(mail_subject, message, to=[student.email])
     email.send()
+
+
+def new_enrollment_for_us(lesson,student,teacher,course,*args, **kwargs):
+    mail_subject = "New enrollment!"
+    message = render_to_string("notify_new_enrollment_us.html", {
+    'student': student,
+    'course': course,
+    'teacher': teacher,
+    'lesson': lesson
+    })
+    email = EmailMessage(mail_subject, message, to=['teach2u.0000@gmail.com'])
+    email.send()

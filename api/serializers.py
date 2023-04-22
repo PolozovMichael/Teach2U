@@ -50,6 +50,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
         token['email'] = user.email
+        token['is_teacher'] = user.is_teacher
+        token['is_student'] = user.is_student
+        token['is_edu_center'] = user.is_edu_center
         return token
 
 class LessonsListSerializer(serializers.ModelSerializer):

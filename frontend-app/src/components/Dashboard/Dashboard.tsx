@@ -10,7 +10,7 @@ const Dashboard = () => {
       <Profilebar />
       <Quotes />
       <Badges />
-      <Feedback />
+      {/* <Feedback /> */}
     </div>
   )
 }

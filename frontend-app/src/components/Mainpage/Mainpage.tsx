@@ -15,9 +15,9 @@ const Mainpage = () => {
       <Sidebar/>
       <div className="main-wrapper">
         <Search />
-        <h1 className="main-title">
+        <h3 className="main-title">
           Добро пожаловать в онлайн образовательную платформу Teach2U
-        </h1>
+        </h3>
         <div className="cards-block">
           <div className="card-row all-cards">
             <MainpageCard
@@ -47,7 +47,7 @@ const Mainpage = () => {
           </div>
         </div>
       </div>
-      <Dashboard/>
+      {/* <Dashboard/> */}
     </div>
   )
 }

@@ -26,7 +26,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
 		e.preventDefault();
-
+    console.log('formData', formData)
 		axiosInstance
 			.post('login/', formData)
 			.then((res) => {
@@ -68,7 +68,7 @@ const SignIn = () => {
         onChange={handleChange}
         id="password"/>
 
-    <button className='form--sbt' type="submit">Войти</button>
+    <button className='form--sbt' type="submit" >Войти</button>
     <div className="social">
       <div className="go"><FontAwesomeIcon icon={faGoogle} size="lg"/>  Google</div>
       <div className="fb"><FontAwesomeIcon icon={faFacebook} size="lg"/>  Facebook</div>

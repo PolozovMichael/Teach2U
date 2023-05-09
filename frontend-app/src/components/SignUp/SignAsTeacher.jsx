@@ -1,19 +1,25 @@
 import './sign-up.css'
 import { useState } from 'react';
-import EduCentCard from './EduCentCard';
-import school from '../../assets/svg-pictures/school.svg'
 import axiosInstance from "../../axios";
 import Sidebar from '../Sidebar/Sidebar';
+import { useNavigate } from 'react-router-dom'
 
 const SignUpTeacher = () => {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
+    education: '',
     email: '',
     phone: '',
     password: '',
     password2: ''
   });
+
+  let navigate = useNavigate()
+  const routeHandler = (URL) => {
+    navigate(URL)
+  }
+
 
   const handleChange = event => {
     const { name, value, type, checked } = event.target;
@@ -48,7 +54,17 @@ const SignUpTeacher = () => {
     <div className="main">
       <Sidebar/>
       <form className="form" onSubmit={handleSubmit}>
-      <h1 className='regTitle'>Регистрация репетитора</h1>    
+      <h1 className='regTitle'>Регистрация репетитора</h1>   
+      <p></p>
+      <button onClick={() => routeHandler('/regTeach')} className="form--submit" type="submit">
+        Регистрация репетитора
+      </button>
+      <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
+        Регистрация ученика
+      </button>
+      <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
+        Регистрация образ. центра
+      </button>
       <p>Введите ваши данные</p>
       <input
         type="text"
@@ -64,6 +80,14 @@ const SignUpTeacher = () => {
         name="last_name"
         className="form--input"
         value={formData.last_name}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        placeholder="Образование"
+        name="education"
+        className="form--input"
+        value={formData.education}
         onChange={handleChange}
       />
       <p>Контакты</p>
@@ -96,11 +120,11 @@ const SignUpTeacher = () => {
         type="password"
         placeholder="Подтвердите пароль"
         name="password2"
-        className="form--input"
+        className="form--input-last"
         value={formData.password2}
         onChange={handleChange}
       />
-      <button className="form--submit" type="submit">
+      <button className="form--submit" type="submit" onClick={handleSubmit}>
         Завершить регистрацию
       </button>
     </form>

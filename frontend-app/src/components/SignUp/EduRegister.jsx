@@ -4,6 +4,7 @@ import EduCentCard from './EduCentCard';
 import parent from '../../assets/svg-pictures/parents.svg'
 import axiosInstance from "../../axios";
 import Sidebar from '../Sidebar/Sidebar';
+import { useNavigate } from 'react-router-dom'
 
 const EduRegister = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,11 @@ const EduRegister = () => {
     city: '',
     address: ''
   });
+
+  let navigate = useNavigate()
+  const routeHandler = (URL) => {
+    navigate(URL)
+  }
 
   const handleChange = event => {
     const { name, value, type, checked } = event.target;
@@ -48,7 +54,17 @@ const EduRegister = () => {
     <div className="main">
       <Sidebar/>
       <form className="form" onSubmit={handleSubmit}>
-      <h1 className='regTitle'>Регистрация образовательного центра</h1>    
+      <h1 className='regTitle'>Регистрация образовательного центра</h1>
+      <p></p>
+      <button onClick={() => routeHandler('/regTeach')} className="form--submit" type="submit">
+        Регистрация репетитора
+      </button>
+      <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
+        Регистрация ученика
+      </button>
+      <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
+        Регистрация образ. центра
+      </button>
       <p>Введите данные центра</p>
       <input
         type="text"
@@ -104,7 +120,7 @@ const EduRegister = () => {
         type="password"
         placeholder="Подтвердите пароль"
         name="password2"
-        className="form--input"
+        className="form--input-last"
         value={formData.password2}
         onChange={handleChange}
       />

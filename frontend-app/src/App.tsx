@@ -11,6 +11,13 @@ import EduRegister from './components/SignUp/EduRegister'
 import ConfirmEmail from './components/SignUp/ConfirmEmail'
 import StudentProfile from './components/StudentProfile/StudentProfile'
 import TeacherProfile from './components/TeacherProfile/TeacherProfile'
+import SignUpDefolt from './components/SignUp/SignDefolt'
+import StudentEdit from './components/StudentProfile/StudentEdit'
+import EditTeacherProfile from './components/TeacherProfile/EditTeachProf'
+import MarketTeachProf from './components/TeacherProfile/MarketTeachProf'
+import SubjectPage from './components/TeacherProfile/Courses/Subjects/SubjPage'
+import SubjectPageEdit from './components/TeacherProfile/Courses/Subjects/SubjectPageEdit'
+
 
 const App = () => {
   return (
@@ -41,10 +48,34 @@ const App = () => {
               </>
             }
           ></Route>
+           <Route
+            path="/regDefolt"
+            element={
+              <SignUpDefolt />
+            }
+          ></Route>
           <Route
             path="/regTeach"
             element={
               <SignUpTeacher />
+            }
+          ></Route>
+          <Route
+            path="/studEdit"
+            element={
+              <StudentEdit />
+            }
+          ></Route>
+          <Route
+            path="/editTeach"
+            element={
+              <EditTeacherProfile />
+            }
+          ></Route>
+          <Route
+            path="/marketTeach"
+            element={
+              <MarketTeachProf/>
             }
           ></Route>
           <Route
@@ -82,6 +113,22 @@ const App = () => {
           element={
             <>
               <TeacherProfile />
+            </>
+          }
+        ></Route>
+         <Route
+          path="/subjectsByHours/:course_id"
+          element={
+            <>
+              <SubjectPage />
+            </>
+          }
+        ></Route>
+         <Route
+          path="/subjectsByHoursEdit/:course_id"
+          element={
+            <>
+              <SubjectPageEdit />
             </>
           }
         ></Route>

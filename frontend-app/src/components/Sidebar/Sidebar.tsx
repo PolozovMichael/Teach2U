@@ -49,15 +49,15 @@ const Sidebar = () => {
               <h1>Начать обучение</h1>
             </div>
             <div
-              onClick={() => routeHandler('/regTeach')}
+              onClick={() => routeHandler('/regDefolt')}
               className={
-                window.location.pathname === '/regTeach'
+                window.location.pathname === '/regDefolt'
                   ? `navigation-item active`
                   : `navigation-item`
               }
             >
-              <Sprite id="teach" />
-              <h1>Начать преподовать</h1>
+              <Sprite id="registerdefault" />
+              <h1>Регистрация</h1>
             </div>
             {user ? (
               <div
@@ -92,14 +92,25 @@ const Sidebar = () => {
                 window.location.pathname === '/profile'
                   ? `navigation-item active`
                   : `navigation-item`
-              }
-            >
+                }
+                >
               <Sprite id="profile" />
               <h1>Профиль</h1>
             </div>
+            <div
+              onClick={() => routeHandler('/profileTeacher')}
+              className={
+                window.location.pathname === '/profileTeacher'
+                  ? `navigation-item active`
+                  : `navigation-item`
+                }
+                >
+              <Sprite id="profile" />
+              <h1>Профиль Учителя</h1>
+            </div>
           </div>
         </div>
-        <div className="settings">
+        {/* <div className="settings">
           <h1 className="settings-title">Настройки</h1>
           <div className="navigation">
             <div className="navigation-item">
@@ -115,7 +126,7 @@ const Sidebar = () => {
               <h1>FAQ</h1>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

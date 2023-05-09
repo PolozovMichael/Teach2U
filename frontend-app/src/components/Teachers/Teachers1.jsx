@@ -34,7 +34,7 @@ const Teachers1 = () => {
       text={card.first_name + ' ' + card.last_name}
       subject={card.subject}
       price={card.price}
-      url = '/profileTeacher'
+      url = '/marketTeach'
       buttonText={"Подробнее"} />
   ))
   return (
@@ -50,7 +50,6 @@ const Teachers1 = () => {
         </div>
       </div>
       </div>
-      <Dashboard/>
     </div>
   )
 }

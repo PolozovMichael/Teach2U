@@ -12,7 +12,7 @@ const Profilebar = () => {
         <h3>Михаил</h3>
       </div>
       <div>
-        <Sprite id="dropdown" />
+        {/* <Sprite id="dropdown" /> */}
       </div>
     </div>
   )

@@ -4,6 +4,7 @@ import TeachCard from './TeachCard';
 import './sign-up.css'
 import axiosInstance from "../../axios";
 import Sidebar from '../Sidebar/Sidebar';
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,11 @@ const SignUp = () => {
     password: '',
     password2: ''
   });
+
+  let navigate = useNavigate()
+  const routeHandler = (URL) => {
+    navigate(URL)
+  }
 
   const handleChange = event => {
     const { name, value, type, checked } = event.target;
@@ -48,6 +54,16 @@ const SignUp = () => {
       <Sidebar/>
         <form className="form" onSubmit={handleSubmit}>
         <h1 className='regTitle'>Регистрация ученика</h1>
+        <p></p>
+      <button onClick={() => routeHandler('/regTeach')} className="form--submit" type="submit">
+        Регистрация репетитора
+      </button>
+      <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
+        Регистрация ученика
+      </button>
+      <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
+        Регистрация образ. центра
+      </button>
         <p>Информация о ребенке</p>
         <input
           type="text"
@@ -95,7 +111,7 @@ const SignUp = () => {
           type="password"
           placeholder="Подтвердите пароль"
           name="password2"
-          className="form--input"
+          className="form--input-last"
           value={formData.password2}
           onChange={handleChange}
         />

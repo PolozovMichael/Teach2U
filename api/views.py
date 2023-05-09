@@ -225,7 +225,7 @@ class CreateCourseView(generics.CreateAPIView):
         return Response({'msg': 'Course Created Successfully'}, status=status.HTTP_200_OK)
     
 class CourseListView(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = ListCourseSerializer
 
     def get_queryset(self, *args, **kwargs):

@@ -114,6 +114,13 @@ class EduCenterListView(generics.ListAPIView):
     queryset = User.objects.prefetch_related('edu_center').exclude(edu_center__phone=None)
     serializer_class = ListEduCenter
 
+class TeacherDataView(generics.ListAPIView):
+    queryset = Teacher.objects.filter(id=1)
+    serializer_class = TeacherDataSerializer
+
+
+
+    
 #Update Profile View
 class UpdateStudentView(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated&IsStudentUser]
@@ -321,6 +328,20 @@ class DeleteEnrollmentView(generics.DestroyAPIView):
         else:
             return Response({'msg': 'You are not allowed to delete this enrollment'}, status=status.HTTP_403_FORBIDDEN)
 
+class LessonsListView(generics.ListAPIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    serializer_class = LessonsListSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        course = Courses.objects.get(pk=self.kwargs['course_id'])
+        queryset = Lessons.objects.filter(related_course=course)
+        return queryset
+    
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 class EnrollListStudentsView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated&IsTeacherUser]
     serializer_class = ListEnrollStudentsSerializer
@@ -398,14 +419,21 @@ class UpdateLessonView(generics.RetrieveUpdateAPIView):
         serializer = self.get_serializer(data=self.request.data)
         serializer.is_valid(raise_exception=True)
         teacher = Teacher.objects.get(user_id=request.user.id)
-        student = User.objects.get(pk=lesson.student_id)
         if teacher.id == lesson.teacher_id:
-            if serializer.update(lesson, serializer.validated_data) == True:
-                notify_update_lesson(lesson = lesson, student = student, course = lesson.related_course)
-                return Response(
-                    {'msg': 'Lesson Updated Successfully'}, status=status.HTTP_200_OK)
+            if lesson.student_id != None:
+                student = User.objects.get(pk=lesson.student_id)
+                if serializer.update(lesson, serializer.validated_data) == True:
+                    notify_update_lesson(lesson = lesson, student = student, course = lesson.related_course)
+                    return Response(
+                        {'msg': 'Lesson Updated Successfully'}, status=status.HTTP_200_OK)
+                else:
+                    return Response({'msg': 'Lesson not updated. Conflicting times'}, status=status.HTTP_400_BAD_REQUEST)
             else:
-                return Response({'msg': 'Lesson not updated. Conflicting times'}, status=status.HTTP_400_BAD_REQUEST)
+                if serializer.update(lesson, serializer.validated_data) == True:
+                    return Response(
+                        {'msg': 'Lesson Updated Successfully'}, status=status.HTTP_200_OK)
+                else:
+                    return Response({'msg': 'Lesson not updated. Conflicting times'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'msg': 'You are not allowed to update this lesson'}, status=status.HTTP_403_FORBIDDEN)
         
@@ -421,6 +449,5 @@ class CurrentUserView(generics.ListAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 
  

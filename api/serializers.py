@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['phone', 'education']
+        fields = ['id', 'phone', 'education']
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,10 +34,9 @@ class EduCenterSerializer(serializers.ModelSerializer):
 class CoursesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Courses
-        fields = ['name', 'description', 'price', 'number_of_students']
+        fields = ['id','name', 'description', 'price', 'number_of_students']
 
 class LessonsSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = Lessons
         fields = ['date', 'start_time', 'end_time']
@@ -65,9 +64,10 @@ class LessonsListSerializer(serializers.ModelSerializer):
 class TeacherSignupSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
     phone = serializers.CharField(write_only=True)
+    education = serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'birth_date', 'surname']
+        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'education', 'birth_date', 'surname']
         extra_kwargs = {'password': {'write_only': True}}
 
     def save(self, **kwargs):
@@ -88,7 +88,8 @@ class TeacherSignupSerializer(serializers.ModelSerializer):
         user.save()
         Teacher.objects.create(
             user=user, 
-            phone=self.validated_data['phone']
+            phone=self.validated_data['phone'],
+            education=self.validated_data['education'],
         )
         return user
         
@@ -290,13 +291,25 @@ class ListLessonsSeriaziler(serializers.ModelSerializer):
     related_course = LessonsSerializer(many=True)
     class Meta:
         model = Courses
-        fields = ['name', 'description', 'price', 'number_of_students', 'related_course']
+        fields = ['id','name', 'description', 'price', 'number_of_students', 'related_course']
+
+class LessonsListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lessons
+        fields = ['id', 'start_time', 'end_time', 'date', 'related_course']
 
 class ListCourseSerializer(serializers.ModelSerializer):
     courses = ListLessonsSeriaziler(many=True)
     class Meta:
         model = Teacher
-        fields = ['phone', 'education', 'courses']
+        fields = ['id', 'phone', 'education', 'courses']
+
+class TeacherDataSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False)
+    courses = ListLessonsSeriaziler(many=True)
+    class Meta:
+        model = Teacher
+        fields = ['user', 'id', 'phone', 'education','courses']
 
 class UpdateCourseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -313,7 +326,6 @@ class UpdateCourseSerializer(serializers.ModelSerializer):
 
 class ListEnrollStudentsSerializer(serializers.ModelSerializer):
     user = ListStudent(many=False)
-
     class Meta:
         model = Enrollment
         fields = ['user_id', 'lessons', 'user']
@@ -346,6 +358,7 @@ class AddLessonsSerializer(serializers.ModelSerializer):
         if lessons.clean() == True:
             duration = datetime.datetime.combine(self.validated_data['date'], self.validated_data['end_time'])-datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time'])
             duration = int(duration.total_seconds()/60)
+            print(datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time']))
             create = my_zoom.CreateMeeting(datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time'])+datetime.timedelta(hours=6),
                                            course.name,
                                            duration,
@@ -368,7 +381,6 @@ class UpdateLessonsSerializer(serializers.ModelSerializer):
         instance.start_time = validated_data.get('start_time', instance.start_time)
         instance.end_time = validated_data.get('end_time', instance.end_time)
         if instance.clean() == True:
-
             instance.save()
             return True
         else:
@@ -395,3 +407,10 @@ class CurrentUserSerializer(serializers.ModelSerializer):
             ret.pop('student')
             ret.pop('teacher')
         return ret
+    
+
+class ChosenTeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'birth_date', 'surname', 'teacher']
+        

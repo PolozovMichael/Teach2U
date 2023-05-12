@@ -31,14 +31,17 @@ urlpatterns = [
     path('lessons', MyEnrollmentsView.as_view()),
 
     # Teacher
+
     path('teacher/dashboard/', TeacherOnlyView.as_view()),
     path('update/teacher/', UpdateTeacherView.as_view()),
     path('create/course/', CreateCourseView.as_view(), name='create-course'),
 
     # Course (Teacher)
+    path('teacher/<int:pk>', TeacherDataView.as_view()),
     path('course-list/<int:id>', CourseListView.as_view()),
     path('update/course/<int:id>', UpdateCourseView.as_view()),
     path('delete/course/<int:id>', DeleteCourseView.as_view()),
+    path('course/<int:course_id>/list-lessons', LessonsListView.as_view()), 
     path('course/<int:id>/add-lesson/', AddLessonsView.as_view(), name='add-lesson'),
     path('enroll/course/<int:course_id>/list', EnrollListStudentsView.as_view()),
     path('delete/course/<int:id>/lesson/<int:lesson_id>', DeleteLessonView.as_view()),

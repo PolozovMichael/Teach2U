@@ -39,6 +39,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'teach2u.urls'
 APPEND_SLASH = False
 
+ALLOWED_HOSTS = ["*"]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

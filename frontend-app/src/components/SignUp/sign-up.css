@@ -88,7 +88,6 @@ body {
 }
 
 .form--submit {
-  display: block;
   width: 33% !important;
   margin-top: 2rem;
   padding: 0.8rem;

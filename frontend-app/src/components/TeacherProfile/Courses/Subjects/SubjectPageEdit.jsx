@@ -26,9 +26,11 @@ const SubjectPageEdit = (props) => {
   const [mainCourseList, setMainCourseList] = React.useState([])
 
   const LessonsListArr =  mainCourseList.map(lesson=>{
+    console.log('lesson.', lesson?.related_course)
       return <SubjComponentEdit
         key={lesson.id}
-        related_course = {lesson.related_course}
+        lesson_id={lesson.id}
+        course_id= {lesson.related_course}
         date={lesson.date}
         start_time={lesson.start_time}
         end_time={lesson.end_time}
@@ -37,25 +39,28 @@ const SubjectPageEdit = (props) => {
         {...lesson}/>
     })
 
+  
+
     const paramss = useParams();
     React.useEffect(()=>{
-      axiosInstance.get('enroll/course/'+paramss.course_id+'/list').then((response)=>{
+      axiosInstance.get('course/'+paramss.course_id+'/list-lessons').then((response)=>{
 
           setMainCourseList(response.data)
           console.log('lessons', response.data)
       })
     }, [])
 
+
   
   return (
     <div className="main">
       <Sidebar/>
       <div className='settings-block_t'>
-        <h1 className="profile-title_t">Выберите удобное время урока</h1>
+        <h1 className="profile-title_t">Редактирование занятий</h1>
         {/* {isShown && <ContactInfoTeach/>} */}
         <section className='course--list'>{LessonsListArr}</section>
+        <h1 className="profile-title_t">Добавить занятие</h1>
         <AddSubjComponentEdit />
-        <div className="edit">Сохранить</div>
     </div>
     </div>
   )

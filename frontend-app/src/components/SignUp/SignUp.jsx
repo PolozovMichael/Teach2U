@@ -10,6 +10,8 @@ const SignUp = () => {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
+    surname: '',
+    birth_date: '',
     email: '',
     phone: '',
     password: '',
@@ -61,9 +63,9 @@ const SignUp = () => {
       <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
         Регистрация ученика
       </button>
-      <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
+      {/* <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
         Регистрация образ. центра
-      </button>
+      </button> */}
         <p>Информация о ребенке</p>
         <input
           type="text"
@@ -79,6 +81,22 @@ const SignUp = () => {
           name="last_name"
           className="form--input"
           value={formData.last_name}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          placeholder="Отчество"
+          name="surname"
+          className="form--input"
+          value={formData.surname}
+          onChange={handleChange}
+        />
+        <input
+          type="date"
+          placeholder="Дата рождения"
+          name="birth_date"
+          className="form--input"
+          value={formData.birth_date}
           onChange={handleChange}
         />
         <p>Контакты</p>

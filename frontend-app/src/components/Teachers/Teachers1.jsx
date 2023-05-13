@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import './teachers.scss'
 import MainpageCard from '../MainpageCard/MainpageCard'
-import cardsData from './cardsData'
 import teacherCard from '../../assets/svg-pictures/teacher.svg'
 import axiosInstance from '../../axios'
 import Sidebar from '../Sidebar/Sidebar'
@@ -9,34 +8,37 @@ import Dashboard from '../Dashboard/Dashboard'
 
 
 const Teachers1 = () => {
-  const [cards, setCards] = React.useState(cardsData)
+  const [cards, setCards] = React.useState([])
 
 
 
-  // const getUsers = async () => {
-  //   try {
-  //     const response = axiosInstance.get('teacher-list/').then((res) => {
-  //       console.log(res.data)
-  //       setCards(res.data)
-  //     })
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const getUsers = async () => {
+    try {
+      const response = axiosInstance.get('teacher-list/').then((res) => {
+        console.log(res.data)
+        setCards(res.data)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   
-  // useEffect(() => {
-  //   getUsers()
-  // }, [])
+  useEffect(() => {
+    getUsers()
+  }, [])
 
   const cardElements = cards.map(card => (
-    <MainpageCard key={card.id}
+    <MainpageCard
+      key={card?.teacher?.id}
       src={teacherCard}
       text={card.first_name + ' ' + card.last_name}
       subject={card.subject}
       price={card.price}
-      url = '/marketTeach'
-      buttonText={"Подробнее"} />
+      url ={`/marketTeach/${card?.teacher?.id}`}
+      buttonText={"Подробнее"}
+       />
   ))
+
   return (
     <div className="main">
       <Sidebar/>

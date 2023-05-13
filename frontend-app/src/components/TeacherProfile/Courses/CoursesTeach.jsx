@@ -20,12 +20,14 @@ const CoursesTeach = (props) => {
       <div className="second-col">
         <div className="first-row">Описание</div>
         <p className="second-row">{props.description}</p>
+        <div className="first-row">Стоимость</div>
         <p className="second-row">{props.price}</p>
       </div>
       <div className="third-col">
         <div className="first-row">Количество мест</div>
         <p className="second-row">{props.number_of_students}</p>
-  
+      <br />
+      <br />
         <button onClick={() => routeHandler(`/subjectsByHours/${props.course_id}`)} className="second-row_t_c">Подробнее</button>
       </div>
     </div>

@@ -4,7 +4,6 @@ import Sidebar from '../Sidebar/Sidebar'
 import Dashboard from '../Dashboard/Dashboard'
 import React from 'react'
 import PersonalInfoEdit from './PersonalInfo/PersInfoEdit'
-import ContactInfoStudEdit from './ContactInfo/ContactStudEdit'
 import axiosInstance from '../../axios'
 
 const StudentEdit = () => {
@@ -12,34 +11,41 @@ const StudentEdit = () => {
 
   const [mainStudList, setMainStudList] = React.useState([])
 
-  React.useEffect(()=>{
-    axiosInstance.get('course-list/1').then((response)=>{
-      setMainStudList(response.data[0].student)
-        console.log('student data', response.data)
-    })
-  }, [])
+  React.useEffect(() => {
+    axiosInstance
+      .get("curr/")
+      .then((response) => {
+        const data = response.data;
+        setMainStudList(data);
 
+        console.log("student data", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const CurrentUser = mainStudList.map(data => {
+    return <PersonalInfoEdit
+      key={data?.id}
+      id={data?.id}
+      first_name={data?.first_name}
+      last_name={data?.last_name}
+      birth_date={data?.birth_date}
+      email={data?.email}
+      phone={data?.student?.phone}
+      {...data} />
+  })
   return (
     <div className="main">
-      <Sidebar/>
+      <Sidebar />
       <div className="profile-wrapper">
-      {/* <Search /> */}
-      <h1 className="profile-title">Настройки профиля ученика</h1>
-      <div className="settings-block">
-        <PersonalInfoEdit
-            id={mainStudList.id}
-           first_name={mainStudList.first_name}
-           last_name={mainStudList.last_name}
-        />
-        <ContactInfoStudEdit
-          id={mainStudList.id}
-          email={mainStudList.email}
-          phone={mainStudList.phone}
-        />
-        {/* <div className="edit">Сохранить изминения</div> */}
+        {/* <Search /> */}
+        <h1 className="profile-title">Настройки профиля ученика</h1>
+        <div className="settings-block">
+          <section className='course-list'>{CurrentUser}</section>
+        </div>
       </div>
-    </div>
-    {/* <Dashboard/> */}
     </div>
   )
 }

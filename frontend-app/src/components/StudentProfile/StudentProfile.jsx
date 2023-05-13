@@ -18,34 +18,45 @@ const StudentProfile = () => {
 
   const [mainStudList, setMainStudList] = React.useState([])
 
-  React.useEffect(()=>{
-    axiosInstance.get('course-list/1').then((response)=>{
-      setMainStudList(response.data[0].student)
-        console.log('student data', response.data)
-    })
-  }, [])
+  const CurrentUser = mainStudList.map(data => {
+    return <PersonalInfo
+      key={data?.id}
+      first_name={data?.first_name}
+      last_name={data.last_name}
+      birth_date={data.birth_date}
+      surname={data.surname}
+      id={data.id}
+      email={data.email}
+      phone={data?.student?.phone}
+    />
+  })
+  React.useEffect(() => {
+    axiosInstance
+      .get("curr/")
+      .then((response) => {
+        const mainTeacherData = response.data;
+        setMainStudList(mainTeacherData);
+        console.log("student data", mainTeacherData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   return (
     <div className="main">
-      <Sidebar/>
+      <Sidebar />
       <div className="profile-wrapper">
-      {/* <Search /> */}
-      <h1 className="profile-title">Настройки профиля ученика</h1>
-      <div className="settings-block">
-        <PersonalInfo
-          first_name={mainStudList.first_name}
-          last_name={mainStudList.last_name}/>
-        <ContactInfo
-          id={mainStudList.id}
-          email={mainStudList.email}
-          phone={mainStudList.phone}
-        />
-        <Courses />
-        <div onClick={() => routeHandler('/studEdit')} className="edit">Редактировать профиль</div>
-        {/* <Calendar /> */}
+        {/* <Search /> */}
+        <h1 className="profile-title">Настройки профиля ученика</h1>
+        <div className="settings-block">
+        <section className='course-list'>{CurrentUser}</section>
+          <Courses />
+          <div onClick={() => routeHandler('/studEdit')} className="edit">Редактировать профиль</div>
+          {/* <Calendar /> */}
+        </div>
       </div>
-    </div>
-    {/* <Dashboard/> */}
+      {/* <Dashboard/> */}
     </div>
   )
 }

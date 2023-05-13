@@ -9,6 +9,8 @@ const SignUpTeacher = () => {
     first_name: '',
     last_name: '',
     education: '',
+    birth_date:'',
+    surname: '',
     email: '',
     phone: '',
     password: '',
@@ -62,9 +64,9 @@ const SignUpTeacher = () => {
       <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
         Регистрация ученика
       </button>
-      <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
+      {/* <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
         Регистрация образ. центра
-      </button>
+      </button> */}
       <p>Введите ваши данные</p>
       <input
         type="text"
@@ -80,6 +82,14 @@ const SignUpTeacher = () => {
         name="last_name"
         className="form--input"
         value={formData.last_name}
+        onChange={handleChange}
+      />
+      <input
+        type="date"
+        placeholder="Дата рождения в формате: 10.08.1990"
+        name="birth_date"
+        className="form--input"
+        value={formData.birth_date}
         onChange={handleChange}
       />
       <input

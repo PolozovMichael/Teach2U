@@ -53,6 +53,7 @@ const EditCoursesTeach = (props) => {
             className="second-row_e"
             value={formData.name}
             onChange={handleChange} />
+            <div className="first-row">Cтоимость</div>
             <input
             type="text"
             placeholder="Цена"
@@ -70,6 +71,7 @@ const EditCoursesTeach = (props) => {
             className="second-row_e"
             value={formData.description}
             onChange={handleChange} />
+            <div className="first-row">Количестово мест</div>
                <input
             type="text"
             placeholder="Количество студентов"
@@ -79,11 +81,11 @@ const EditCoursesTeach = (props) => {
             onChange={handleChange} />
       </div>
       <div className="third-col">
-        <div className="first-row">hui</div>
+        <div className="first-row"></div>
 
         <button onClick={()=>{handleUpdate(props.id)}} className="second-row_t_c">Сохранить</button>
         <button  onClick={()=>{handleDelete(props.id)}} className="second-row_t_c">Удалить</button>
-        <button  onClick={() => routeHandler(`/subjectsByHoursEdit/${props.course_id}`)} className="second-row_t_c">Измен. Уроки</button>
+        <button  onClick={() => routeHandler(`/subjectsByHoursEdit/${props.course_id}`)} className="second-row_t_c">Список занятий</button>
       </div>
     </div>
   )

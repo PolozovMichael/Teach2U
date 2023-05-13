@@ -8,6 +8,7 @@ const ContactInfoTeach = (props) => {
       </div>
       <div className="second-col_c">
         <div className="first-row_c">{props.phone}</div>
+        <br />
         <div className="second-row">{props.email}</div>
       </div>
     </div>

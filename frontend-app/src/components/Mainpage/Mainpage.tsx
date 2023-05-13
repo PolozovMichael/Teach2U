@@ -14,7 +14,7 @@ const Mainpage = () => {
     <div className="main">
       <Sidebar/>
       <div className="main-wrapper">
-        <Search />
+        {/* <Search /> */}
         <h3 className="main-title">
           Добро пожаловать в онлайн образовательную платформу Teach2U
         </h3>
@@ -32,18 +32,18 @@ const Mainpage = () => {
               buttonText="Начать обучать"
               url='/regTeach'
             />
-            <HorizontalMainpageCard
+            {/* <HorizontalMainpageCard
               src={parent}
               text="Следите за успеваемостью вашего ребенка и общайтесь с репетиторами через аккаунт родителя"
               buttonText="Регистрация"
               url='/#'
-            />
-            <HorizontalMainpageCard
+            /> */}
+            {/* <HorizontalMainpageCard
               src={school}
               text="Зарегистрируйте свой образовательный центр и начните получать заявки на обучение"
               buttonText="Регистрация"
               url='/regEduCent'
-            />
+            /> */}
           </div>
         </div>
       </div>

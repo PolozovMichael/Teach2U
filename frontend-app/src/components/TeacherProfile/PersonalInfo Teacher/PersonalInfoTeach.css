@@ -1,6 +1,6 @@
 .body_t {
     width: 95%;
-    height: 380px;
+    height: 615px;
     background: rgba(255, 255, 255, 0.56);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -23,17 +23,17 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
     .first_t {
         font-weight: 500;
-        font-size: 20px;
+        font-size: 25px;
         letter-spacing: 0.03em;
-
         color: rgba(17, 23, 75, 0.5);
     }
     .first_t_edu{
         font-weight: 400;
-        font-size: 20px;
+        font-size: 23px;
         letter-spacing: 0.03em;
 
         color: #11174B;
@@ -51,12 +51,14 @@
 .second-row_t {
     justify-content: space-between;
     display: flex;
+    margin-bottom: 10px;
 }
 
 
 .third-row_t {
     justify-content: space-between;
     display: flex;
+    margin-bottom: 10px;
 }
 
 
@@ -64,6 +66,7 @@
 .fourth-row_t {
     justify-content: space-between;
     display: flex;
+    margin-bottom: 10px;
 }
 
 
@@ -76,8 +79,31 @@
     background-size: cover;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 50%;
+    margin-bottom: 80px;
 }
 
 .form--input{
-    width: 60%;
+    width: 100% !important;
+}
+
+.form--input-area{
+    width: 100% !important;
+}
+
+.ShowContact {
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0.035em;
+    color: #11174B;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    width: 262px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }

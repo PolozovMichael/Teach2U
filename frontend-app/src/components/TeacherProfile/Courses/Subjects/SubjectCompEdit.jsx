@@ -1,6 +1,7 @@
 import React from 'react'
 import '../CoursesTeach.css'
 import { useState } from 'react';
+import axiosInstance from '../../../../axios';
 
 const SubjComponentEdit = (props) => {
 
@@ -22,45 +23,50 @@ const SubjComponentEdit = (props) => {
 
 // idshniki lessona vmesto courses
 
-  function handleUpdate(id){
-    axiosInstance.put(`/update/course/${id}`,{
+  function handleUpdate(course_id,lesson_id){
+    axiosInstance.put(`/update/course/${course_id}/lesson/${lesson_id}`,{
+      date: formData.date,
       start_time: formData.start_time,
       end_time: formData.end_time,
     })
 };
 
-function handleDelete(id){
-  axiosInstance.delete(`/delete/course/${id}`)
+function handleDelete(course_id,lesson_id){
+  axiosInstance.delete(`/delete/course/${course_id}/lesson/${lesson_id}`)
 }
 
 
   return (
     <div className="courses-body_t">
       <div className="first-col">
-        <div className="first-row">Урок по курсу {props.related_course} был добавлен:</div>
-        <div className="second-row">{props.date}</div>
-      </div>
-      <div className="second-col">
-        <div className="first-row">Дата начала урока</div>
+      <div className="first-row">Дата начала урока</div>
         <input
-            type="text"
+            type="time"
             placeholder="Время начала урока"
             name="start_time"
             className="second-row_e"
             value={formData.start_time}
             onChange={handleChange} />
-      </div>
-      <div className="third-col">
-        <div className="first-row">Дата окончания урока</div>
+
+        <div className="second-row">Дата окончания урока</div>
         <input
-            type="text"
+            type="time"
             placeholder="Время окончания урока"
             name="end_time"
             className="second-row_e"
             value={formData.end_time}
             onChange={handleChange} />
-        <button onClick={()=>{handleUpdate(props.id)}} className="second-row_t_c">Сохранить</button>
-        <button  onClick={()=>{handleDelete(props.id)}} className="second-row_t_c">Удалить</button>
+        </div>
+      <div className="second-col">
+      <div className="first-row">Дата Урока:</div>
+        <input
+            type="date"
+            name="date"
+            className="second-row_e"
+            value={formData.date}
+            onChange={handleChange} />
+        <button onClick={()=>{handleUpdate(props.course_id, props.lesson_id)}} className="second-row_t_c">Сохранить</button>
+        <button  onClick={()=>{handleDelete(props.course_id, props.lesson_id)}} className="second-row_t_c">Удалить</button>
       </div>
     </div>
   )

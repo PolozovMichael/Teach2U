@@ -27,6 +27,7 @@ const SubjectPage = (props) => {
   const LessonsListArr =  mainCourseList.map(lesson=>{
       return <SubjComponent
         key={lesson.id}
+        lesson_id={lesson.id}
         related_course = {lesson.related_course}
         date={lesson.date}
         start_time={lesson.start_time}
@@ -38,7 +39,7 @@ const SubjectPage = (props) => {
 
     const paramss = useParams();
     React.useEffect(()=>{
-      axiosInstance.get('enroll/course/'+paramss.course_id+'/list').then((response)=>{
+      axiosInstance.get('course/'+paramss.course_id+'/list-lessons').then((response)=>{
 
           setMainCourseList(response.data)
           console.log('lessons', response.data)

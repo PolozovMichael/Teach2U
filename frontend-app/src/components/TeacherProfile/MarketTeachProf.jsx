@@ -6,53 +6,67 @@ import PersonalInfoTeach from './PersonalInfo Teacher/PersonalInfoTeach'
 import './teacherProfile.css'
 import Sidebar from '../Sidebar/Sidebar'
 import axiosInstance from '../../axios'
+import { useParams } from 'react-router-dom'
 
 
-const MarketTeachProf = (props) => {
+const MarketTeachProf = () => {
   const [isShown, setIsShown] = React.useState(false)
 
-  const [mainCourseList, setMainCourseList] = React.useState([])
+
+  const [mainTeachList, setMainTeachList] = React.useState([])
 
   function toggleShown(){
     setIsShown(prevShown => !prevShown)
   }
 
-  React.useEffect(()=>{
-    axiosInstance.get('course-list/1').then((response)=>{
-        setMainCourseList(response.data[0].courses)
-        console.log('respoawdawdawta', response.data)
-    })
-  }, [])
+  const paramss = useParams();
 
-  const CourseListArr = mainCourseList.map(course=>{
+  console.log('courses', mainTeachList.courses)
+
+  React.useEffect(() => {
+    axiosInstance
+      .get("teacher/"+paramss.id)
+      .then((response) => {
+        const mainTeacherData = response.data[0];
+        setMainTeachList(mainTeacherData);
+
+        console.log("teacher data", mainTeacherData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+
+  const CourseListArr = mainTeachList?.courses?.map(course=>{
     return <CoursesTeach
-      key={course.id}
-      name={course.name}
-      desc={course.desc}
-      price={course.price}
-      num_of_stud={course.num_of_students}
-      {...course}/>
+    key={course.id}
+    course_id = {course.id}
+    name={course.name}
+    descriptionription={course.description}
+    price={course.price}
+    number_of_students={course.number_of_students}
+    {...course}/>
   })
-
-
-  React.useEffect(()=>{
-    axiosInstance.get('course-list/1').then((response)=>{
-        setMainCourseList(response.data[0].courses)
-        console.log('respoawdawdawta', response.data)
-    })
-  }, [])
 
   
   return (
     <div className="main">
       <Sidebar/>
       <div className='settings-block_t'>
-        <PersonalInfoTeach/>
-        {isShown && <ContactInfoTeach/>}
+        <PersonalInfoTeach
+          first_name={mainTeachList?.user?.first_name}
+          last_name={mainTeachList?.user?.last_name}
+          education={mainTeachList.education}
+          age={mainTeachList.age}/>
+          <div onClick={toggleShown} className="edit">{isShown ? `Скрыть контакты` : `Показать контакты`}</div>
+        {isShown && <ContactInfoTeach
+                      phone={mainTeachList.phone}
+                      email={mainTeachList?.user?.email}/>}
+
         <h1 className="profile-title_t">Актуальные курсы</h1>
-        <CoursesTeach isShown = {isShown} toggleShown={toggleShown}/>
+        <section className='course--list'>{CourseListArr}</section>
         {/* <Calendar /> */}
-        <div onClick={toggleShown} className="edit">{isShown ? `Скрыть контакты` : `Показать контакты`}</div>
     </div>
     </div>
   )

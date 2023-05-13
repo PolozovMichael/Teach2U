@@ -11,7 +11,7 @@ import axiosInstance from '../../axios'
 
 const TeacherProfile = (props) => {
 
-  function toggleShown(){
+  function toggleShown() {
     setIsShown(prevShown => !prevShown)
   }
 
@@ -26,52 +26,78 @@ const TeacherProfile = (props) => {
 
   const [mainTeachList, setMainTeachList] = React.useState([])
 
-  const CourseListArr = mainCourseList.map(course=>{
-      return <CoursesTeach
-        key={course.id}
-        course_id = {course.id}
-        name={course.name}
-        descriptionription={course.description}
-        price={course.price}
-        number_of_students={course.number_of_students}
-        {...course}/>
+  const CourseListArr = mainCourseList?.map(course => {
+    return <CoursesTeach
+      key={course.id}
+      course_id={course.id}
+      name={course.name}
+      descriptionription={course.description}
+      price={course.price}
+      number_of_students={course.number_of_students}
+      {...course} />
+  })
+
+  const CurrentUser = mainTeachList.map(data => {
+    return <PersonalInfoTeach
+      key={data.id}
+      id={data.id}
+      first_name={data.first_name}
+      last_name={data.last_name}
+      education={data?.teacher?.education}
+      phone={data?.teacher?.phone}
+      birth_date={data.birth_date}
+      email={data.email}
+      surname={data.surname}
+      {...data} />
+  })
+
+  React.useEffect(() => {
+    axiosInstance
+      .get("curr/")
+      .then((response) => {
+        const mainTeacherData = response.data;
+        setMainTeachList(mainTeacherData);
+
+        console.log("teacher data", mainTeacherData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    mainTeachList.map(data => {
+      if (mainTeachList && data?.teacher?.id) {
+        const id = data?.teacher?.id
+
+        console.log('first',)
+        axiosInstance
+          .get(`course-list/${id}`)
+          .then((response) => {
+            setMainCourseList(response.data[0].courses);
+            console.log("course data", response);
+          })
+          .catch((error) => {
+            console.error("Error fetching course data:", error);
+          });
+      }
     })
 
-    React.useEffect(()=>{
-      axiosInstance.get('course-list/1').then((response)=>{
-          setMainCourseList(response.data[0].courses)
-          console.log('course data', response.data)
-      })
-    }, [])
+  }, [mainTeachList]);
 
-    React.useEffect(()=>{
-      axiosInstance.get('course-list/1').then((response)=>{
-        setMainTeachList(response.data[0].teacher)
-          console.log('teacher data', response.data)
-      })
-    }, [])
 
-  
+
+
   return (
     <div className="main">
-      <Sidebar/>
+      <Sidebar />
       <div className='settings-block_t'>
-        <PersonalInfoTeach
-          first_name={mainTeachList.first_name}
-          last_name={mainTeachList.last_name}
-          education={mainTeachList.education}
-        />
-        <ContactInfoTeach
-          id={mainTeachList.id}
-          email={mainTeachList.email}
-          phone={mainTeachList.phone}
-        />
+        <section className='course-list'>{CurrentUser}</section>
         <h1 className="profile-title_t">Актуальные курсы</h1>
         <section className='course--list'>{CourseListArr}</section>
         {/* <Calendar /> */}
         <div onClick={() => routeHandler('/editTeach')} className="edit">Редактировать профиль</div>
-  
-    </div>
+      </div>
     </div>
   )
 }

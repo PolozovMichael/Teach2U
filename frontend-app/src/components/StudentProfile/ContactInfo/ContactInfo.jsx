@@ -8,7 +8,8 @@ const ContactInfo = (props) => {
         {/* <div className="third-row">Домашний адрес</div> */}
       </div>
       <div className="second-col">
-        <div className="first-row">{props.phone}</div>
+        <div className="second-row">{props.phone}</div>
+        <br />
         <div className="second-row">{props.email}</div>
         {/* <div className="third-row">2587 Blue Spruce Lane, Columbia, MD</div> */}
       </div>

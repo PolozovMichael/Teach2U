@@ -1,6 +1,6 @@
 .body {
     width: 100%;
-    height: 340px;
+    height: 610px;
     background: rgba(255, 255, 255, 0.56);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -20,22 +20,19 @@
             display: flex;
             width: 100%;
             justify-content: space-between;
+            margin-bottom: 17px;
 
             .first {
-                font-weight: 400;
+                font-weight: 500;
                 font-size: 25px;
                 letter-spacing: 0.03em;
-                padding-bottom: 0px;
-                margin-bottom: 0px;
                 color: rgba(17, 23, 75, 0.5);
             }
 
             .second {
-                font-weight: 500;
-                font-size: 25px;
+                font-weight: 400;
+                font-size: 23px;
                 letter-spacing: 0.03em;
-                padding-bottom: 0px;
-                margin-bottom: 0;
                 color: #11174B;
             }
         }
@@ -46,9 +43,10 @@
         .second-row {
             justify-content: space-between;
             display: flex;
+            margin-bottom: 17px;
 
             .first {
-                font-weight: 400;
+                font-weight: 500;
                 font-size: 25px;
                 letter-spacing: 0.03em;
                 margin-top: 0px;
@@ -57,8 +55,8 @@
             }
 
             .second {
-                font-weight: 500;
-                font-size: 25px;
+                font-weight: 400;
+                font-size: 23px;
                 letter-spacing: 0.03em;
                 margin-top: 0px;
                 padding-top: 0px;
@@ -72,9 +70,10 @@
         .third-row {
             justify-content: space-between;
             display: flex;
+            margin-bottom: 17px;
 
             .first {
-                font-weight: 400;
+                font-weight: 500;
                 font-size: 25px;
                 letter-spacing: 0.03em;
 
@@ -82,8 +81,8 @@
             }
 
             .second {
-                font-weight: 500;
-                font-size: 25px;
+                font-weight: 400;
+                font-size: 23px;
                 letter-spacing: 0.03em;
 
                 color: #11174B;
@@ -96,17 +95,18 @@
         .fourth-row {
             justify-content: space-between;
             display: flex;
+            margin-bottom: 17px;
 
             .first {
-                font-weight: 400;
+                font-weight: 500;
                 font-size: 25px;
                 letter-spacing: 0.03em;
                 color: rgba(17, 23, 75, 0.5);
             }
 
             .second {
-                font-weight: 500;
-                font-size: 25px;
+                font-weight: 400;
+                font-size: 23px;
                 letter-spacing: 0.03em;
 
                 color: #11174B;
@@ -124,9 +124,10 @@
             background-size: cover;
             filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
             border-radius: 50%;
+            margin-bottom: 65px;
         }
     }
     .form--input{
-        width: 65%;
+        width: 95% !important;
     }
 }

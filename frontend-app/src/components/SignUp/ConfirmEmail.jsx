@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axiosInstance from '../../axios';
 
 function ConfirmEmail() {
   const { uidb64, token } = useParams();
@@ -9,7 +10,7 @@ function ConfirmEmail() {
 
   async function handleConfirmation() {
     try {
-    const response = axios.get('http://127.0.0.1:8000/api/activate/'+uidb64+'/'+token);
+    const response = axiosInstance.get('activate/'+uidb64+'/'+token);
       console.log(response.data);
       setConfirmationSuccess(true);
     } catch (error) {

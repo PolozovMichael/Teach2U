@@ -61,9 +61,9 @@ const SignUpDefolt = () => {
       <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
         Регистрация ученика
       </button>
-      <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
+      {/* <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
         Регистрация образ. центра
-      </button>
+      </button> */}
       <p>Введите ваши данные</p>
       <input
         type="text"

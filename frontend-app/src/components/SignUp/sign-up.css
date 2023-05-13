@@ -17,10 +17,9 @@ body {
 
 .form {
   display: flex;
-  margin: 10px auto;
-  justify-content: space-between;
+  margin: 40px auto;
   align-items: flex-start;
-  padding-left: 100px;
+  max-width: 850px;
 }
 
 .form h1{
@@ -33,12 +32,18 @@ body {
   font-size: 1.2rem;
   font-weight: 400;
   color: #11174b;
+  margin-left: 50px;
 }
 
 .form label {
   font-size: 1.2rem;
   font-weight: 400;
   color: #11174b;
+}
+
+.regTitle {
+  margin-bottom: 20px;
+  margin-left: 40px;
 }
 
 .navigation-item{
@@ -48,7 +53,7 @@ body {
 }
 
 .form--input {
-  width: 85% !important;
+  width: 80% !important;
   height: 45px;
   margin-bottom: 1rem;
   font-size: 1.2rem;
@@ -88,7 +93,7 @@ body {
 }
 
 .form--submit {
-  width: 33% !important;
+  width: 45% !important;
   margin-top: 2rem;
   padding: 0.8rem;
   border: none;
@@ -102,6 +107,32 @@ body {
   background-color: rgba(255, 255, 255, 0.76);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
+  margin: 10px;
+  margin-left: 30px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-row {
+  width: 130%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form--input,
+.form--input-last {
+  flex: 1;
+  margin: 15px 30px;
+}
+
+.form--input-last {
+  margin-bottom: 20px;
 }
 
 @media screen and (min-width: 768px) {

@@ -56,17 +56,19 @@ const SignUp = () => {
       <Sidebar/>
         <form className="form" onSubmit={handleSubmit}>
         <h1 className='regTitle'>Регистрация ученика</h1>
-        <p></p>
-      <button onClick={() => routeHandler('/regTeach')} className="form--submit" type="submit">
-        Регистрация репетитора
-      </button>
-      <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
-        Регистрация ученика
-      </button>
+        <div className="form-buttons">
+          <button onClick={() => routeHandler('/regTeach')} className="form--submit" type="button">
+            Регистрация репетитора
+          </button>
+          <button onClick={() => routeHandler('/register')} className="form--submit" type="button">
+            Регистрация ученика
+          </button>
+        </div>
       {/* <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
         Регистрация образ. центра
       </button> */}
         <p>Информация о ребенке</p>
+        <div className="input-row">
         <input
           type="text"
           placeholder="Имя"
@@ -83,6 +85,8 @@ const SignUp = () => {
           value={formData.last_name}
           onChange={handleChange}
         />
+        </div>
+        <div className="input-row">
         <input
           type="text"
           placeholder="Отчество"
@@ -99,7 +103,9 @@ const SignUp = () => {
           value={formData.birth_date}
           onChange={handleChange}
         />
+        </div>
         <p>Контакты</p>
+        <div className="input-row">
         <input
           type="email"
           placeholder="Email адрес"
@@ -116,7 +122,9 @@ const SignUp = () => {
           value={formData.phone}
           onChange={handleChange}
         />
+        </div>
         <p>Установите пароль</p>
+        <div className="input-row">
         <input
           type="password"
           placeholder="Введите пароль"
@@ -133,6 +141,7 @@ const SignUp = () => {
           value={formData.password2}
           onChange={handleChange}
         />
+        </div>
         <button className="form--submit" type="submit" >
           Завершить регистрацию
         </button>

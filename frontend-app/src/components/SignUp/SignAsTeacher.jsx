@@ -57,17 +57,19 @@ const SignUpTeacher = () => {
       <Sidebar/>
       <form className="form" onSubmit={handleSubmit}>
       <h1 className='regTitle'>Регистрация репетитора</h1>   
-      <p></p>
+      <div className="form-buttons">
       <button onClick={() => routeHandler('/regTeach')} className="form--submit" type="submit">
         Регистрация репетитора
       </button>
       <button onClick={() => routeHandler('/register')} className="form--submit" type="submit">
         Регистрация ученика
       </button>
+      </div>
       {/* <button onClick={() => routeHandler('/regEduCent')} className="form--submit" type="submit">
         Регистрация образ. центра
       </button> */}
       <p>Введите ваши данные</p>
+      <div className="input-row">
       <input
         type="text"
         placeholder="Имя"
@@ -84,6 +86,8 @@ const SignUpTeacher = () => {
         value={formData.last_name}
         onChange={handleChange}
       />
+      </div>
+      <div className="input-row">
       <input
         type="date"
         placeholder="Дата рождения в формате: 10.08.1990"
@@ -100,7 +104,9 @@ const SignUpTeacher = () => {
         value={formData.education}
         onChange={handleChange}
       />
+      </div>
       <p>Контакты</p>
+      <div className="input-row">
       <input
         type="email"
         placeholder="Email адрес"
@@ -117,7 +123,9 @@ const SignUpTeacher = () => {
         value={formData.phone}
         onChange={handleChange}
       />
+      </div>
       <p>Установите пароль</p>
+      <div className="input-row">
       <input
         type="password"
         placeholder="Введите пароль"
@@ -134,6 +142,7 @@ const SignUpTeacher = () => {
         value={formData.password2}
         onChange={handleChange}
       />
+      </div>
       <button className="form--submit" type="submit" onClick={handleSubmit}>
         Завершить регистрацию
       </button>

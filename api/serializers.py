@@ -194,7 +194,7 @@ class UpdateStudentSerializer(serializers.ModelSerializer):
     student = StudentSerializer(many=False)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'student']
+        fields = ['first_name', 'last_name', 'email', 'student','surname','birth_date']
     
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('student')
@@ -202,6 +202,8 @@ class UpdateStudentSerializer(serializers.ModelSerializer):
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.email = validated_data.get('email', instance.email)
+        instance.surname = validated_data.get('surname', instance.surname)
+        instance.birth_date = validated_data.get('birth_date', instance.birth_date)
         instance.save()
         student.phone = profile_data.get('phone', student.phone)
         student.save()

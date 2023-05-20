@@ -3,7 +3,12 @@ Hi {{ teacher.first_name }} {{ teacher.last_name }},
 
 {{ student.first_name }} {{ student.last_name }}, have been enrolled in {{ lesson.start_time }}, {{ course.name }} course.
 
-Please click the link below to start Zoom meeting:
-{{ lesson.start_url }}
+Student's info:
+
+Phone: {{ student.phone }}
+Email: {{ student.email }}
+{% if student.telegram %}
+Telegram: https://t.me/{{ student.telegram }}
+{% endif %}
 
 {% endautoescape %}

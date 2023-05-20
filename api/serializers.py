@@ -339,17 +339,16 @@ class MyEnrollmentSerializer(serializers.ModelSerializer):
         model = Enrollment
         fields = ['user_id', 'lessons']
 
-api_key = "kLLqWqbaR-W5x0LNTa2r4w"
-secret_key = "wzoqdUiSaTPov06gy1gyhK7bdf97r0HrjiWf"
-zoom_email = "teach2u.0000@gmail.com"
-my_zoom = ZoomMeetings(api_key,secret_key,zoom_email)
+# api_key = "kLLqWqbaR-W5x0LNTa2r4w"
+# secret_key = "wzoqdUiSaTPov06gy1gyhK7bdf97r0HrjiWf"
+
 
 class AddLessonsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lessons
         fields = ['date', 'start_time', 'end_time']
     
-    def save(self, teacher, course, **kwargs):
+    def save(self, teacher, user, course, **kwargs):
         lessons = Lessons(
             date = self.validated_data['date'],
             start_time = self.validated_data['start_time'],
@@ -358,16 +357,17 @@ class AddLessonsSerializer(serializers.ModelSerializer):
             related_course = course
         )
         if lessons.clean() == True:
-            duration = datetime.datetime.combine(self.validated_data['date'], self.validated_data['end_time'])-datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time'])
-            duration = int(duration.total_seconds()/60)
-            print(datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time']))
-            create = my_zoom.CreateMeeting(datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time'])+datetime.timedelta(hours=6),
-                                           course.name,
-                                           duration,
-                                           'teach2u')
-            print(create)
-            lessons.start_url = create['start_url']
-            lessons.join_url = create['join_url']
+            # zoom_email = "teach2u.0000@gmail.com"
+            # my_zoom = ZoomMeetings(api_key,secret_key,zoom_email)
+            # duration = datetime.datetime.combine(self.validated_data['date'], self.validated_data['end_time'])-datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time'])
+            # duration = int(duration.total_seconds()/60)
+            # create = my_zoom.CreateMeeting(datetime.datetime.combine(self.validated_data['date'],self.validated_data['start_time'])+datetime.timedelta(hours=6),
+            #                                course.name,
+            #                                duration,
+            #                                'teach2u')
+            # print(create)
+            # lessons.start_url = create['start_url']
+            # lessons.join_url = create['join_url']
             lessons.save()
             return True
         else:

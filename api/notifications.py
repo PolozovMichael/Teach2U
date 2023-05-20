@@ -63,12 +63,13 @@ def notify_teacher(teacher, course, lesson, student, *args, **kwargs):
         email = EmailMessage(mail_subject, message, to=[teacher.email])
         email.send()
 
-def notify_student(student, course, lesson, *args, **kwargs):
+def notify_student(student, course, lesson,teacher, *args, **kwargs):
         mail_subject = "Your lesson"
         message = render_to_string("notify_enrollment_student.html", {
         'student': student,
         'course': course,
         'lesson': lesson,
+        'teacher': teacher
         })
         email = EmailMessage(mail_subject, message, to=[student.email])
         email.send()

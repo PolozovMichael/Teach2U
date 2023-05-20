@@ -33,11 +33,15 @@ class CustomManager(UserManager):
             raise ValueError("Superuser must have is_superuser=True.")
 
         return self._create_user(email, password, **extra_fields)
+    def delete(self, *args, **kwargs):
+        self.token_set.all().delete()
+        super().delete(*args, **kwargs)
 
 class User(AbstractUser):
     username = None
     surname = models.CharField(max_length=255, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True, default=None)
+    telegram = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(_("email address"), max_length=150,
         unique=True,
         error_messages={
@@ -49,7 +53,6 @@ class User(AbstractUser):
     is_teacher = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
     is_edu_center = models.BooleanField(default=False)
-     
     def __str__(self):
         return self.email
 

@@ -114,9 +114,15 @@ class EduCenterListView(generics.ListAPIView):
     queryset = User.objects.prefetch_related('edu_center').exclude(edu_center__phone=None)
     serializer_class = ListEduCenter
 
+
 class TeacherDataView(generics.ListAPIView):
-    queryset = Teacher.objects.filter(id=1)
-    serializer_class = TeacherDataSerializer
+    def get_queryset(self, *args, **kwargs):
+        queryset = Teacher.objects.filter(id = self.kwargs['pk'])
+        return queryset
+    def get(self, *args, **kwargs):
+        queryset = self.get_queryset(self)
+        serializer = TeacherDataSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 
@@ -228,8 +234,9 @@ class CreateCourseView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = Teacher.objects.get(user_id=request.user.id)
-        serializer.save(user)
-        return Response({'msg': 'Course Created Successfully'}, status=status.HTTP_200_OK)
+        course = serializer.save(user)
+        return Response({'msg': 'Course Created Successfully',
+                         "id": course.id}, status=status.HTTP_200_OK)
     
 class CourseListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -302,7 +309,7 @@ class EnrollCourseView(generics.CreateAPIView):
                     teacher = Teacher.objects.get(pk=course.teacher_id)
                     teacher = User.objects.get(pk=teacher.user_id)
                     notify_teacher(teacher=teacher,course=course,lesson=lesson,student = request.user)
-                    notify_student(course=course,lesson=lesson,student = request.user)
+                    notify_student(course=course,lesson=lesson,student = request.user,teacher=teacher)
                     new_enrollment_for_us(teacher=teacher,course=course,lesson=lesson,student = request.user)
                     return Response({'msg': 'Enrollment successful'}, status=status.HTTP_200_OK)
                 else:
@@ -381,7 +388,7 @@ class AddLessonsView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         teacher = Teacher.objects.get(user_id=request.user.id)
         course = Courses.objects.get(pk=self.kwargs['id'])
-        if serializer.save(teacher, course) == True:
+        if serializer.save(teacher,request.user, course) == True:
             return Response({'msg': 'Lesson Added Successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'msg': 'Lesson not added. Conflicting times'}, status=status.HTTP_400_BAD_REQUEST)

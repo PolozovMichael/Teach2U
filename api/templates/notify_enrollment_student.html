@@ -3,7 +3,13 @@ Hi {{ student.first_name }} {{ student.last_name }},
 
 You have been enrolled in {{ lesson.start_time }}, {{ course.name }} course.
 
-Please click the link below to start Zoom meeting:
-{{ lesson.join_url }}
+Your teacher:
+{{ teacher.first_name }} {{ teacher.last_name }}
+Phone: {{ teacher.phone }}
+Email: {{ teacher.email }}
+{% if teacher.telegram %}
+Telegram: https://t.me/{{ teacher.telegram }}
+{% endif %}
+
 
 {% endautoescape %}

@@ -307,9 +307,10 @@ class EnrollCourseView(generics.CreateAPIView):
                     enrollment = Enrollment(user_id=id, lessons=lesson)
                     enrollment.save()
                     teacher = Teacher.objects.get(pk=course.teacher_id)
-                    teacher = User.objects.get(pk=teacher.user_id)
-                    notify_teacher(teacher=teacher,course=course,lesson=lesson,student = request.user)
-                    notify_student(course=course,lesson=lesson,student = request.user,teacher=teacher)
+                    user_teacher = User.objects.get(pk=teacher.user_id)
+                    user_student User.objects.get(pk=request.user.user.id)
+                    notify_teacher(teacher=teacher,course=course,lesson=lesson,student = request.user,user_teacher=user_teacher)
+                    notify_student(course=course,lesson=lesson,student = request.user,teacher=teacher,user_student=user_student)
                     new_enrollment_for_us(teacher=teacher,course=course,lesson=lesson,student = request.user)
                     return Response({'msg': 'Enrollment successful'}, status=status.HTTP_200_OK)
                 else:

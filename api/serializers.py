@@ -67,7 +67,7 @@ class TeacherSignupSerializer(serializers.ModelSerializer):
     education = serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'education', 'birth_date', 'surname']
+        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'education', 'birth_date', 'surname', 'telegram']
         extra_kwargs = {'password': {'write_only': True}}
 
     def save(self, **kwargs):
@@ -76,7 +76,8 @@ class TeacherSignupSerializer(serializers.ModelSerializer):
             last_name = self.validated_data['last_name'],
             email = self.validated_data['email'],
             birth_date = self.validated_data['birth_date'],
-            surname = self.validated_data['surname']
+            surname = self.validated_data['surname'],
+            telegram = self.validated_data['telegram']
         )
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
@@ -98,7 +99,7 @@ class StudentSignupSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'birth_date', 'surname']
+        fields = ['first_name', 'last_name', 'email', 'password', 'password2', 'phone', 'birth_date', 'surname', 'telegram']
         extra_kwargs = {'password': {'write_only': True}}
 
     def save(self, **kwargs):
@@ -107,7 +108,8 @@ class StudentSignupSerializer(serializers.ModelSerializer):
             last_name = self.validated_data['last_name'],
             email = self.validated_data['email'],
             birth_date = self.validated_data['birth_date'],
-            surname = self.validated_data['surname']
+            surname = self.validated_data['surname'],
+            telegram = self.validated_data['telegram']
         )
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
@@ -176,14 +178,15 @@ class UpdateTeacherSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer(many=False)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'teacher']
+        fields = ['first_name', 'last_name', 'email', 'teacher', 'telegram']
     
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('teacher')
         teacher = instance.teacher
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
-        instance.email = validated_data.get('email', instance.email)
+        instance.email = validated_data.get('email', instance.email)        
+        instance.telegram = validated_data.get('telegram', instance.telegram)
         instance.save()
         teacher.phone = profile_data.get('phone', teacher.phone)
         teacher.education = profile_data.get('education', teacher.education)
@@ -194,7 +197,7 @@ class UpdateStudentSerializer(serializers.ModelSerializer):
     student = StudentSerializer(many=False)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'student','surname','birth_date']
+        fields = ['first_name', 'last_name', 'email', 'student','surname','birth_date','telegram']
     
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('student')
@@ -204,6 +207,7 @@ class UpdateStudentSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.surname = validated_data.get('surname', instance.surname)
         instance.birth_date = validated_data.get('birth_date', instance.birth_date)
+        instance.telegram = validated_data.get('telegram', instance.telegram)
         instance.save()
         student.phone = profile_data.get('phone', student.phone)
         student.save()
@@ -371,8 +375,7 @@ class AddLessonsSerializer(serializers.ModelSerializer):
             lessons.save()
             return True
         else:
-            return False
-   
+            return False 
 class UpdateLessonsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lessons
@@ -395,7 +398,7 @@ class CurrentUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'email', 'birth_date', 'surname', 'is_student', 'is_teacher', 'is_edu_center', 'teacher', 'student', 'edu_center']
+        fields = ['id', 'first_name', 'last_name', 'email', 'birth_date', 'surname', 'is_student', 'is_teacher', 'is_edu_center', 'teacher', 'student', 'edu_center', 'telegram']
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)

@@ -34,8 +34,10 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
-
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = [
+    'https://deploy-front-nine.vercel.app',
+    'https://teach2u.vercel.app'
+] 
 ROOT_URLCONF = 'teach2u.urls'
 APPEND_SLASH = False
 
@@ -61,8 +63,12 @@ WSGI_APPLICATION = 'teach2u.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'teach2u',
+        'USER': 'webadmin',
+        'PASSWORD': 'ZCHxtf81971',
+        'HOST': 'node48890-teach2u.jcloud.kz',
+        'PORT': '5432',
     }
 }
 
@@ -104,6 +110,11 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/var/www/webroot/ROOT/site/static'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    "/var/www/webroot/ROOT/static",
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -151,3 +162,5 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
+

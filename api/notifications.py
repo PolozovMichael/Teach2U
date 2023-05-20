@@ -58,7 +58,8 @@ def notify_teacher(teacher, course, lesson, student, *args, **kwargs):
         'teacher': teacher,
         'course': course,
         'lesson': lesson,
-        'student': student
+        'student': student,
+        'user_student': user_student
         })
         email = EmailMessage(mail_subject, message, to=[teacher.email])
         email.send()
@@ -69,7 +70,8 @@ def notify_student(student, course, lesson,teacher, *args, **kwargs):
         'student': student,
         'course': course,
         'lesson': lesson,
-        'teacher': teacher
+        'teacher': teacher,
+        'user_teacher': user_teacher
         })
         email = EmailMessage(mail_subject, message, to=[student.email])
         email.send()

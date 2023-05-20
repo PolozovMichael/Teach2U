@@ -52,28 +52,31 @@ def activateEmail(request, user, to_email):
     email = EmailMessage(mail_subject, message, to=[to_email])
     email.send()
 
-def notify_teacher(teacher, course, lesson, student, *args, **kwargs):
+def notify_teacher(teacher, course, lesson, student,user_teacher,user_student, *args, **kwargs):
         mail_subject = "New enrollment!"
         message = render_to_string("notify_enrollment_teacher.html", {
         'teacher': teacher,
         'course': course,
         'lesson': lesson,
         'student': student,
-        'user_student': user_student
+        'user_student': user_student,        
+        'user_teacher': user_teacher
         })
-        email = EmailMessage(mail_subject, message, to=[teacher.email])
+        email = EmailMessage(mail_subject, message, to=[user_teacher.email])
         email.send()
 
-def notify_student(student, course, lesson,teacher, *args, **kwargs):
+def notify_student(student, course, lesson,teacher,user_teacher,user_student, *args, **kwargs):
         mail_subject = "Your lesson"
         message = render_to_string("notify_enrollment_student.html", {
         'student': student,
         'course': course,
         'lesson': lesson,
         'teacher': teacher,
-        'user_teacher': user_teacher
+        'user_teacher': user_teacher,
+        'user_student': user_student      
+
         })
-        email = EmailMessage(mail_subject, message, to=[student.email])
+        email = EmailMessage(mail_subject, message, to=[user_student.email])
         email.send()
 
 def cancel_lesson(lesson,student,teacher,course,*args, **kwargs):
@@ -108,3 +111,4 @@ def new_enrollment_for_us(lesson,student,teacher,course,*args, **kwargs):
     })
     email = EmailMessage(mail_subject, message, to=['teach2u.0000@gmail.com'])
     email.send()
+

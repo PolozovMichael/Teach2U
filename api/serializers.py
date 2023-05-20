@@ -419,3 +419,4 @@ class ChosenTeacherSerializer(serializers.ModelSerializer):
         model = User
         fields = ['first_name', 'last_name', 'email', 'birth_date', 'surname', 'teacher']
         
+

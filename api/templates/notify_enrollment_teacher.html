@@ -1,14 +1,13 @@
 {% autoescape off %}
-Hi {{ teacher.first_name }} {{ teacher.last_name }},
+Hi {{ user_teacher.first_name }} {{ user_teacher.last_name }},
 
-{{ student.first_name }} {{ student.last_name }}, have been enrolled in {{ lesson.start_time }}, {{ course.name }} course.
+{{ user_student.first_name }} {{ user_student.last_name }}, have been enrolled in {{ lesson.start_time }}, {{ course.name }} course.
 
 Student's info:
-
-Phone: {{ user_student.phone }}
-Email: {{ student.email }}
-{% if student.telegram %}
-Telegram: https://t.me/{{ student.telegram }}
+Phone: {{ student.phone }}
+Email: {{ user_student.email }}
+{% if user_student.telegram %}
+Telegram: https://t.me/{{ user_student.telegram }}
 {% endif %}
 
 {% endautoescape %}

@@ -63,14 +63,21 @@ WSGI_APPLICATION = 'teach2u.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'teach2u',
-        'USER': 'webadmin',
-        'PASSWORD': 'ZCHxtf81971',
-        'HOST': 'node48890-teach2u.jcloud.kz',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase', 
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'teach2u',
+#         'USER': 'webadmin',
+#         'PASSWORD': 'ZCHxtf81971',
+#         'HOST': 'node48890-teach2u.jcloud.kz',
+#         'PORT': '5432',
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -110,11 +117,11 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/var/www/webroot/ROOT/site/static'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    "/var/www/webroot/ROOT/static",
-]
+# STATIC_ROOT = '/var/www/webroot/ROOT/site/static'
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     "/var/www/webroot/ROOT/static",
+# ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

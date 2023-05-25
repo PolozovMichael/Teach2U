@@ -54,11 +54,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['is_edu_center'] = user.is_edu_center
         return token
 
-class LessonsListSerializer(serializers.ModelSerializer):
-    related_course = CoursesSerializer(read_only=True)
-    class Meta:
-        model = Lessons
-        fields = ['date', 'start_time', 'end_time', 'related_course']
+
 
 # Sign Up Serializers
 class TeacherSignupSerializer(serializers.ModelSerializer):
@@ -299,10 +295,12 @@ class ListLessonsSeriaziler(serializers.ModelSerializer):
         model = Courses
         fields = ['id','name', 'description', 'price', 'number_of_students', 'related_course']
 
+        
 class LessonsListSerializer(serializers.ModelSerializer):
+    related_course = CoursesSerializer(read_only=True)
     class Meta:
         model = Lessons
-        fields = ['id', 'start_time', 'end_time', 'date', 'related_course']
+        fields = ['date', 'start_time', 'end_time', 'related_course']
 
 class ListCourseSerializer(serializers.ModelSerializer):
     courses = ListLessonsSeriaziler(many=True)

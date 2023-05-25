@@ -136,7 +136,7 @@ class Lessons(models.Model):
 class Enrollment(models.Model):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     lessons = models.ForeignKey(Lessons, related_name='lessons', on_delete=models.CASCADE, default=None)
-
+    
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
     
